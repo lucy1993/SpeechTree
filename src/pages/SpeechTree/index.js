@@ -1,4 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import { connect } from 'react-redux';
 import uuidv4 from 'uuid/v4';
 // action
@@ -19,7 +21,8 @@ class SpeechTree extends Component {
     idPath: {
       feature: 1,
       context: 1,
-      event: 1
+      event: 1,
+      activeAddButton: false
     },
     addSentenceModal: false,
     activeContextList: [],
@@ -36,6 +39,7 @@ class SpeechTree extends Component {
       activeContextList: data.feature,
       activeEventList: [],
       activeSentenceList: [],
+      activeAddButton: false,
       idPath : {
         ...this.state.idPath,
         feature : id
@@ -46,6 +50,8 @@ class SpeechTree extends Component {
   handleContextListClick = (data, id) => {
     this.setState({
       activeEventList: data.context,
+      activeSentenceList: [],
+      activeAddButton: false,
       idPath : {
         ...this.state.idPath,
         context : id
@@ -56,6 +62,7 @@ class SpeechTree extends Component {
   handleEventListClick = (data, id) => {
     this.setState({
       activeSentenceList: data.event,
+      activeAddButton: true,
       idPath : {
         ...this.state.idPath,
         event : id
@@ -108,7 +115,14 @@ class SpeechTree extends Component {
 
   render () {
     const { features } = this.props;
-    const { activeContextList, activeEventList, activeSentenceList, idPath, addSentenceModal } = this.state;
+    const { 
+      activeContextList, 
+      activeEventList, 
+      activeSentenceList, 
+      idPath, 
+      addSentenceModal,
+      activeAddButton
+    } = this.state;
     return (
       <div className='speech-tree-wrap'>
         {addSentenceModal ? <AddSentenceModal 
@@ -118,7 +132,7 @@ class SpeechTree extends Component {
         <section className='speech-section'>
           <div className='section-global-box section-box-title'>
             <h1 className='section-title'>Features</h1>
-            <p className='section-sub-title'>There are {1} features in total</p>
+            <p className='section-sub-title'>There are {features && features.length ? features.length : 0} features in total</p>
           </div>
           <FeatureList
             data={features}
@@ -152,8 +166,8 @@ class SpeechTree extends Component {
             <h1 className='section-title'>Sentences</h1>
             <p className='section-sub-title'>There are {activeSentenceList.length} sentences in total</p>
             <div 
-              onClick={this.handleAddSentence}
-              className={`${activeSentenceList.length ? 'add-sentence-active' : 'add-sentence-disabled' } add-sentence-modified`} 
+              onClick={activeAddButton ? this.handleAddSentence : null}
+              className={`${activeAddButton ? 'add-sentence-active' : 'add-sentence-disabled' } add-sentence-modified`} 
             >
               Add sentence +
             </div>
@@ -167,6 +181,10 @@ class SpeechTree extends Component {
       </div>
     )
   }
+}
+
+SpeechTree.propTypes = {
+  features: PropTypes.array
 }
 
 const mapStateToProps = function(state) {

@@ -15,7 +15,9 @@ const store = createStore(reducer, applyMiddleware(thunk));
 function App() {
   return (
     <Provider  store={store} >
-      <SpeechTree />
+      <div className="App">
+        <SpeechTree />
+      </div>
     </Provider>
 
   );

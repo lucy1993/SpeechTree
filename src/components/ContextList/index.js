@@ -1,4 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import uuidv4 from 'uuid/v4';
 
 class ContextList extends Component {
@@ -35,6 +37,13 @@ class ContextList extends Component {
       </div>
     )
   }
+}
+
+ContextList.propTypes = {
+  data: PropTypes.array,
+  parentId: PropTypes.object,
+  onClickChange: PropTypes.func,
+
 }
 
 export default ContextList

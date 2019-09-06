@@ -1,3 +1,5 @@
+@import '../../theme/colors.scss';
+
 h1, p {
   margin: 0;
   padding: 0;
@@ -10,7 +12,7 @@ h1, p {
     width: 300px;
     height: 100%;
     display: inline-block;
-    border-right: 1px solid #D8D8D8;
+    border-right: 1px solid $gray;
 
   }
 
@@ -25,16 +27,15 @@ h1, p {
   }
 
   .section-title, .section-elm-title {
-    font-family: Montserrat-ExtraBold;
     font-size: 26px;
-    color: #000000;
+    color: $black;
     letter-spacing: 0;
     margin-bottom: 1px;
+    font-weight: 600;
   } 
   .section-sub-title, .section-elm-sub-title  {
-    font-family: Montserrat-Regular;
     font-size: 13px;
-    color: #CDCDCD;
+    color: $lightGray;
     letter-spacing: 0;
   }
 
@@ -51,7 +52,7 @@ h1, p {
   }
 
   .section-global-box-border {
-    border-bottom: 1px solid #D8D8D8;
+    border-bottom: 1px solid $gray;
   }
 
   .sentences-section {
@@ -66,10 +67,10 @@ h1, p {
 }
 
 .active {
-  background-color: #1B78D3;
+  background-color: $blue;
 
   .section-elm-title, .section-elm-sub-title {
-    color: #fff;
+    color: $white !important;
   }
 
 }
@@ -82,16 +83,16 @@ h1, p {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #fff;
+  color: $white;
 }
 
 .add-sentence-active {
-  background-color: #1B78D3;
-  box-shadow: 0 5px 20px 0 #1B78D3;
+  background-color: $blue;
+  box-shadow: 0 5px 20px 0 $blue;
 }
 
 .add-sentence-disabled {
-  background: #ECECEC;
+  background: $darkGray;
   top: 40px;
 }
 
@@ -100,7 +101,7 @@ h1, p {
 }
 
 .global-button {
-  background: #FFFFFF;
-  border: 1px solid #000000;
-  color: #000000;
+  background: $white;
+  border: 1px solid $black;
+  color: $black;
 }

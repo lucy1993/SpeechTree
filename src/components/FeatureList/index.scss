@@ -1,4 +1,10 @@
+@import '../../theme/colors.scss';
+
 .feature-list {
-  background-color: #F9F8F8;
+  background-color: $gray;
   margin: 2px 0;
+
+  .section-sub-title, .section-elm-sub-title {
+    color: $black !important;
+  }
 }

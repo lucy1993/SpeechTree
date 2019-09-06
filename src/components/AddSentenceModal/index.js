@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types';
 
 // style
 import './index.scss';
@@ -33,7 +34,7 @@ class AddSentenceModal extends Component {
           <form>
             <h1 className='add-sentence-title'> New sentence  </h1>
             <textarea 
-              type="text" 
+              type='text' 
               value={value} 
               onChange={this.handleChange}
               className='sentence-input'
@@ -58,6 +59,10 @@ class AddSentenceModal extends Component {
       </div>
     )
   }
+}
+
+AddSentenceModal.propTypes = {
+  onAddSentence: PropTypes.func
 }
 
 export default AddSentenceModal
